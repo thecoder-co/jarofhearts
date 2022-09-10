@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:jar_of_hearts/controllers/audio_controller.dart';
 import 'package:jar_of_hearts/controllers/auth.dart';
 import 'package:jar_of_hearts/controllers/jar_controller.dart';
+import 'package:jar_of_hearts/screens/auth/login_screen.dart';
 import 'package:jar_of_hearts/screens/home/widgets/add_jar_box.dart';
 import 'package:jar_of_hearts/screens/home/widgets/invisible_expanded.dart';
 import 'package:jar_of_hearts/screens/home/widgets/jar_box.dart';
 import 'package:jar_of_hearts/utils/app_colors.dart';
 import 'package:jar_of_hearts/utils/size.dart';
 import 'package:get/get.dart';
+import 'package:jar_of_hearts/utils/user_preference.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     jarController.fetchProfile();
     AudioController.player.stop();
+    //UserPreferences.clearData();
     AudioController.secondPlayer.stop();
     super.initState();
   }
@@ -42,7 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text('Jar of Hearts!💜'),
                 ),
                 const Spacer(),
-                Row()
+                InkWell(
+                  onTap: () {
+                    UserPreferences.clearData();
+                    Get.offAll(() => const LoginScreen());
+                  },
+                  child: const Icon(Icons.person_off_sharp),
+                ),
               ],
             ),
             automaticallyImplyLeading: false,

@@ -139,8 +139,9 @@ class _TestPageState extends State<PreviewSecondScreen> {
               if (index == (jarController.currentJar['pages'] as List).length) {
                 return InkWell(
                   onTap: () async {
-                    ClipboardData data =
-                        ClipboardData(text: jarController.currentJar['_id']);
+                    ClipboardData data = ClipboardData(
+                        text:
+                            'https://jar-of-hearts-view.web.app/home?jar=${jarController.currentJar['_id']}');
                     await Clipboard.setData(data);
                     Dialogs.showSnackBar('Link copied to clipboard');
                     AudioController.player.stop();

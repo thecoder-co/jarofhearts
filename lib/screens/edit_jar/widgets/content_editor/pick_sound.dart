@@ -165,8 +165,10 @@ class SoundBox extends StatelessWidget {
                   maxLines: 1,
                 ),
                 const Height(20),
-                const LoadingIndicator(
-                  indicatorType: Indicator.ballScaleMultiple,
+                const Expanded(
+                  child: LoadingIndicator(
+                    indicatorType: Indicator.ballScaleMultiple,
+                  ),
                 ),
                 const Height(10),
                 const Text('Please wait for sound to load from network'),

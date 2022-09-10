@@ -43,18 +43,24 @@ class JarController extends GetxController {
     Dialogs.loadDialog();
 
     try {
-      String? path = await selectFromGallery();
+      List<String?>? path = await selectFromGallery();
 
       if (path == null) {
         return;
       }
-      CloudinaryResponse response = await cloudinary.uploadFile(
-        CloudinaryFile.fromFile(
-          path,
-          resourceType: CloudinaryResourceType.Image,
-        ),
-      );
-      await createImage(imageUrl: response.secureUrl);
+
+      for (var i in path) {
+        if (i != null) {
+          CloudinaryResponse response = await cloudinary.uploadFile(
+            CloudinaryFile.fromFile(
+              i,
+              resourceType: CloudinaryResourceType.Image,
+            ),
+          );
+          await createImage(imageUrl: response.secureUrl);
+        }
+      }
+
       await fetchProfile();
       Get.back();
     } on Exception {
@@ -98,20 +104,21 @@ class JarController extends GetxController {
     return xImageFile?.files.firstOrNull?.path;
   }
 
-  Future<String?> selectFromGallery() async {
+  Future<List<String?>?> selectFromGallery() async {
     if (GetPlatform.isIOS || GetPlatform.isWeb) {
       final xImageFile = await _picker.pickImage(
         source: ImageSource.gallery,
         maxHeight: 400,
         maxWidth: 400,
       );
-      return xImageFile?.path;
+      return [if (xImageFile?.path != null) xImageFile!.path];
     } else {
       FilePickerResult? xImageFile = await FilePicker.platform.pickFiles(
         type: FileType.custom,
-        allowedExtensions: ['jpg', 'png'],
+        allowMultiple: true,
+        allowedExtensions: ['jpg', 'png', 'gif'],
       );
-      return xImageFile?.files.firstOrNull?.path;
+      return xImageFile?.files.map<String?>((e) => e.path).toList();
     }
   }
 

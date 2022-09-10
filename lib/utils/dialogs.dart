@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class Dialogs {
   static void loadDialog() {
-    Get.dialog(const CircularProgressIndicator.adaptive());
+    Get.dialog(const Center(child: CircularProgressIndicator.adaptive()));
   }
 
   static void showSnackBar(String message) {

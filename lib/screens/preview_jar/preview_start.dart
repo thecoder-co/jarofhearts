@@ -28,17 +28,8 @@ class _EditStartViewState extends State<PreviewStart> {
       print('playing');
     }
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (!WindowSize.isLandscape(context)) {
-        paddingSize = WindowSize.width(context) * 0.5 - 70;
-      } else {
-        paddingSize = (WindowSize.width(context) -
-                    ((JarController.editorKey.currentContext!.findRenderObject()
-                            as RenderBox?)!
-                        .size
-                        .width)) *
-                0.5 -
-            70;
-      }
+      paddingSize = WindowSize.width(context) * 0.5 - 70;
+
       setState(() {});
     });
   }
