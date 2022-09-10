@@ -1,7 +1,5 @@
 PODS:
-  - assets_audio_player (0.0.1):
-    - Flutter
-  - assets_audio_player_web (0.0.1):
+  - audioplayers_darwin (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.4):
     - DKImagePickerController/ImageDataManager
@@ -50,8 +48,7 @@ PODS:
   - SwiftyGif (5.4.3)
 
 DEPENDENCIES:
-  - assets_audio_player (from `.symlinks/plugins/assets_audio_player/ios`)
-  - assets_audio_player_web (from `.symlinks/plugins/assets_audio_player_web/ios`)
+  - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -66,10 +63,8 @@ SPEC REPOS:
     - SwiftyGif
 
 EXTERNAL SOURCES:
-  assets_audio_player:
-    :path: ".symlinks/plugins/assets_audio_player/ios"
-  assets_audio_player_web:
-    :path: ".symlinks/plugins/assets_audio_player_web/ios"
+  audioplayers_darwin:
+    :path: ".symlinks/plugins/audioplayers_darwin/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
@@ -82,8 +77,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_ios/ios"
 
 SPEC CHECKSUMS:
-  assets_audio_player: edee322b9cb625571b830b35872ead1a295fd917
-  assets_audio_player_web: 19826380c44375761aa0b9053665c1e3fbc3b86b
+  audioplayers_darwin: 387322cb364026a1782298c982693b1b6aa9fa1b
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95

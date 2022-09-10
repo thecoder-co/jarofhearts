@@ -200,31 +200,19 @@ class SoundBox extends StatelessWidget {
           callBack();
         }
       },
-      child: Column(
-        children: [
-          Container(
-            height: 110,
-            width: 110,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.yellow[900],
-            ),
-            alignment: Alignment.center,
-            child: const Icon(
-              Icons.music_note_rounded,
-              color: Colors.white,
-              size: 35,
-            ),
-          ),
-          /*  const Height(10),
-          SizedBox(
-            width: 110,
-            child: Text(
-              name ?? '',
-              maxLines: 1,
-            ),
-          ) */
-        ],
+      child: Container(
+        height: 110,
+        width: 110,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.yellow[900],
+        ),
+        alignment: Alignment.center,
+        child: const Icon(
+          Icons.music_note_rounded,
+          color: Colors.white,
+          size: 35,
+        ),
       ),
     );
   }
