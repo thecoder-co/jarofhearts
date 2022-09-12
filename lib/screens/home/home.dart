@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Wrap(
                   alignment: WrapAlignment.spaceEvenly,
                   children: List.generate(
-                    100,
+                    4,
                     (index) => Shimmer.fromColors(
                       baseColor: Colors.grey,
                       highlightColor: Colors.grey[800]!,
