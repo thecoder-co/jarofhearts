@@ -26,15 +26,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: AppColors.gradient,
-          ),
-          alignment: Alignment.center,
-          child: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppColors.gradient,
+        ),
+        height: double.infinity,
+        width: double.infinity,
+        alignment: Alignment.center,
+        child: SafeArea(
+          child: SingleChildScrollView(
             child: Container(
-              height: WindowSize.height(context) - 50,
               width: WindowSize.isLandscape(context)
                   ? WindowSize.width(context) / 2.5
                   : double.infinity,

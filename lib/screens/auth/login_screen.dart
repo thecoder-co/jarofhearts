@@ -27,23 +27,23 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppColors.gradient,
+        ),
+        alignment: Alignment.center,
         child: Container(
+          height: WindowSize.height(context) - 50,
+          width: WindowSize.isLandscape(context)
+              ? WindowSize.width(context) / 2.5
+              : double.infinity,
+          padding: const EdgeInsets.all(25),
+          margin: const EdgeInsets.all(25),
           decoration: BoxDecoration(
-            gradient: AppColors.gradient,
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(25),
           ),
-          alignment: Alignment.center,
-          child: Container(
-            height: WindowSize.height(context) - 50,
-            width: WindowSize.isLandscape(context)
-                ? WindowSize.width(context) / 2.5
-                : double.infinity,
-            padding: const EdgeInsets.all(25),
-            margin: const EdgeInsets.all(25),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(25),
-            ),
+          child: SingleChildScrollView(
             child: Form(
               key: formKey,
               child: Column(
