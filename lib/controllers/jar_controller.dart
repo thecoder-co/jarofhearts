@@ -39,26 +39,30 @@ class JarController extends GetxController {
     await editJarDb(jarId: currentJar["_id"], jar: currentJar);
   }
 
-  finishImage() async {
+  Future finishImage({String? url}) async {
     Dialogs.loadDialog();
 
     try {
-      List<String?>? path = await selectFromGallery();
+      if (url == null) {
+        List<String?>? path = await selectFromGallery();
 
-      if (path == null) {
-        return;
-      }
-
-      for (var i in path) {
-        if (i != null) {
-          CloudinaryResponse response = await cloudinary.uploadFile(
-            CloudinaryFile.fromFile(
-              i,
-              resourceType: CloudinaryResourceType.Image,
-            ),
-          );
-          await createImage(imageUrl: response.secureUrl);
+        if (path == null) {
+          return;
         }
+
+        for (var i in path) {
+          if (i != null) {
+            CloudinaryResponse response = await cloudinary.uploadFile(
+              CloudinaryFile.fromFile(
+                i,
+                resourceType: CloudinaryResourceType.Image,
+              ),
+            );
+            await createImage(imageUrl: response.secureUrl);
+          }
+        }
+      } else {
+        await createImage(imageUrl: url);
       }
 
       await fetchProfile();
