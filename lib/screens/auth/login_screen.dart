@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: AppColors.gradient,
           ),
           alignment: Alignment.center,

@@ -6,11 +6,11 @@ import 'package:jar_of_hearts/screens/auth/login_screen.dart';
 import 'package:jar_of_hearts/screens/home/widgets/add_jar_box.dart';
 import 'package:jar_of_hearts/screens/home/widgets/invisible_expanded.dart';
 import 'package:jar_of_hearts/screens/home/widgets/jar_box.dart';
+import 'package:jar_of_hearts/screens/home/widgets/sizedboxes.dart';
 import 'package:jar_of_hearts/utils/app_colors.dart';
 import 'package:jar_of_hearts/utils/size.dart';
 import 'package:get/get.dart';
 import 'package:jar_of_hearts/utils/user_preference.dart';
-import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,37 +35,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: WindowSize.height(context),
-            title: Row(
-              children: [
-                const InvisibleExpandedHeader(
-                  child: Text('Jar of Hearts!💜'),
-                ),
-                const Spacer(),
-                InkWell(
-                  onTap: () {
-                    UserPreferences.clearData();
-                    Get.offAll(() => const LoginScreen());
-                  },
-                  child: const Icon(Icons.person_off_sharp),
-                ),
-              ],
-            ),
-            automaticallyImplyLeading: false,
-            centerTitle: false,
-            flexibleSpace: FlexibleSpaceBar(
-              //title: const Text('Available seats'),
-              background: Container(
+      body: ListView(
+        children: [
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Container(
+                width: WindowSize.width(context),
+                height: WindowSize.height(context),
                 padding: EdgeInsets.all(
                   MediaQuery.of(context).orientation == Orientation.portrait
                       ? 30
                       : 0,
                 ),
                 alignment: Alignment.center,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: AppColors.gradient,
                 ),
                 child: LayoutBuilder(builder: (context, constraints) {
@@ -87,58 +71,55 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }),
               ),
-            ),
-            pinned: true,
+              InkWell(
+                onTap: () {
+                  UserPreferences.clearData();
+                  Get.offAll(() => const LoginScreen());
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Icon(Icons.person_off_sharp),
+                ),
+              ),
+            ],
           ),
+          const Height(20),
           Obx((() {
             if (jarController.profile['body'] == null) {
-              return SliverToBoxAdapter(
-                child: Wrap(
-                  alignment: WrapAlignment.spaceEvenly,
-                  children: List.generate(
-                    4,
-                    (index) => Shimmer.fromColors(
-                      baseColor: Colors.grey,
-                      highlightColor: Colors.grey[800]!,
-                      child: Container(
-                        height: 200,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                      ),
+              return Wrap(
+                alignment: WrapAlignment.spaceEvenly,
+                children: List.generate(
+                  4,
+                  (index) => Container(
+                    height: 200,
+                    width: 300,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(25),
                     ),
+                    child: const CircularProgressIndicator.adaptive(),
                   ),
                 ),
               );
             } else {
               List? jars = jarController.profile['body']['jars'];
 
-              return SliverToBoxAdapter(
-                child: Wrap(
-                  runSpacing: 25,
-                  alignment: WrapAlignment.spaceEvenly,
-                  children: List.generate(
-                    (jars?.length ?? 0) + 1,
-                    (index) {
-                      if (index == 0) {
-                        return AddJarBox();
-                      }
-                      return JarBox(id: jars![index - 1]['_id']);
-                    },
-                  ),
+              return Wrap(
+                runSpacing: 25,
+                alignment: WrapAlignment.spaceEvenly,
+                children: List.generate(
+                  (jars?.length ?? 0) + 1,
+                  (index) {
+                    if (index == 0) {
+                      return AddJarBox();
+                    }
+                    return JarBox(id: jars![index - 1]['_id']);
+                  },
                 ),
               );
             }
           })),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (ctx, i) {
-                return const SizedBox(height: 10);
-              },
-            ),
-          )
         ],
       ),
     );

@@ -28,7 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: AppColors.gradient,
           ),
           alignment: Alignment.center,
