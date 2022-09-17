@@ -4,7 +4,6 @@ import 'package:jar_of_hearts/controllers/auth.dart';
 import 'package:jar_of_hearts/controllers/jar_controller.dart';
 import 'package:jar_of_hearts/screens/auth/login_screen.dart';
 import 'package:jar_of_hearts/screens/home/widgets/add_jar_box.dart';
-import 'package:jar_of_hearts/screens/home/widgets/invisible_expanded.dart';
 import 'package:jar_of_hearts/screens/home/widgets/jar_box.dart';
 import 'package:jar_of_hearts/screens/home/widgets/sizedboxes.dart';
 import 'package:jar_of_hearts/utils/app_colors.dart';
@@ -57,16 +56,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   var style = Theme.of(context).textTheme.headline1!;
                   return FittedBox(
                     fit: BoxFit.cover,
-                    child: Text(
-                      text,
-                      style: style.copyWith(
-                        fontSize: calculateAutoscaleFontSize(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
                           text,
-                          style,
-                          30.0,
-                          constraints.maxWidth,
+                          style: style.copyWith(
+                            fontSize: calculateAutoscaleFontSize(
+                              text,
+                              style,
+                              30.0,
+                              constraints.maxWidth - 60,
+                            ),
+                          ),
                         ),
-                      ),
+                        //const Height(20),
+                        SizedBox(
+                          width: WindowSize.width(context) / 1.5,
+                          child: const Text(
+                            'Create online greeting cards for your loved ones with dynamic images, audio and colourful backgrounds.',
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      ],
                     ),
                   );
                 }),
