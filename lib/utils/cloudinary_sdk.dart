@@ -12,15 +12,10 @@ class CloudinarySdk {
   static Future<String?> uploadFile({required Uint8List fileBytes}) async {
     final response =
         await cloudinary.unsignedUploadResource(CloudinaryUploadResource(
-            uploadPreset: 'hsxp50rg',
-            // filePath: file.path,
-            fileBytes: fileBytes,
-            resourceType: CloudinaryResourceType.raw,
-            //folder: cloudinaryCustomFolder,
-            fileName: 'audio',
-            progressCallback: (count, total) {
-              print('Uploading image from file with progress: $count/$total');
-            }));
+      uploadPreset: 'hsxp50rg',
+      fileBytes: fileBytes,
+      resourceType: CloudinaryResourceType.raw,
+    ));
 
     return response.secureUrl;
   }
