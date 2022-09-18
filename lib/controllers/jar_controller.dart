@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:jar_of_hearts/apis/get_profile.dart';
 import 'package:jar_of_hearts/apis/upload_image.dart';
 import 'package:jar_of_hearts/apis/upload_sound.dart';
 import 'package:jar_of_hearts/screens/edit_jar/edit_jar_page.dart';
+import 'package:jar_of_hearts/utils/cloudinary_sdk.dart';
 import 'package:jar_of_hearts/utils/dialogs.dart';
 import 'package:jar_of_hearts/utils/string_exception.dart';
 import 'package:flutter/material.dart';
@@ -77,26 +80,55 @@ class JarController extends GetxController {
     Dialogs.loadDialog();
 
     try {
-      String? path = await selectSound();
+      if (GetPlatform.isWeb) {
+        final bytes = await selectSoundBytes();
 
-      if (path == null) {
-        return;
+        if (bytes == null) {
+          print('bytes null');
+          Get.back();
+
+          return;
+        }
+        print('upload');
+        final response = await CloudinarySdk.uploadFile(fileBytes: bytes);
+        if (response == null) {
+          print('response  null');
+          Get.back();
+
+          return;
+        }
+        print(response);
+
+        await createAudio(
+          audioUrl: response,
+          name: 'Uploaded sound',
+        );
+      } else {
+        String? path = await selectSound();
+
+        if (path == null) {
+          Get.back();
+
+          return;
+        }
+        CloudinaryResponse response = await cloudinary.uploadFile(
+          CloudinaryFile.fromFile(
+            path,
+            resourceType: CloudinaryResourceType.Auto,
+          ),
+        );
+        await createAudio(
+          audioUrl: response.secureUrl,
+          name: path.split('/').last.split('.').first,
+        );
       }
-      CloudinaryResponse response = await cloudinary.uploadFile(
-        CloudinaryFile.fromFile(
-          path,
-          resourceType: CloudinaryResourceType.Auto,
-        ),
-      );
-      await createAudio(
-        audioUrl: response.secureUrl,
-        name: path.split('/').last.split('.').first,
-      );
       await fetchProfile();
       Get.back();
-    } on Exception {
+    } on StringException catch (e) {
       Get.back();
+      print(e);
       Dialogs.showErrorSnackBar('Could not upload sound');
+      rethrow;
     }
   }
 
@@ -106,6 +138,23 @@ class JarController extends GetxController {
       allowedExtensions: ['aac', 'mp3', 'wav', 'wma', 'ogg'],
     );
     return xImageFile?.files.firstOrNull?.path;
+  }
+
+  Future<Uint8List?> selectSoundBytes() async {
+    print('picking');
+    FilePickerResult? xImageFile = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['aac', 'mp3', 'wav', 'wma', 'ogg'],
+    );
+    if (xImageFile == null) {
+      print('xfile is null');
+      return null;
+    }
+
+    final bytes = xImageFile.files.first.bytes;
+    print('done');
+    //print(bytes);
+    return bytes;
   }
 
   Future<List<String?>?> selectFromGallery() async {
