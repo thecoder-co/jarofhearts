@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jar_of_hearts">
    <application
-        android:label="jar_of_hearts"
-        android:name="${applicationName}"
+        android:label="Jar of Hearts"
+        android:name="Jar of Hearts"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
