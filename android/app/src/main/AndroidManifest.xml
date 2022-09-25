@@ -2,7 +2,7 @@
     package="com.example.jar_of_hearts">
    <application
         android:label="Jar of Hearts"
-        android:name="Jar of Hearts"
+        android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
@@ -31,4 +31,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
