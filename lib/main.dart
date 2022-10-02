@@ -20,6 +20,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Dys',
         primarySwatch: Colors.blue,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          filled: true,
+          fillColor: Colors.grey,
+        ),
       ),
       home: UserPreferences.isLoggedIn()
           ? const HomeScreen()

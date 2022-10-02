@@ -33,6 +33,9 @@ class _PickColorState extends State<PickUpsplashImage> {
         for (Photo i in imagesResponse.data?.results ?? []) {
           images.add(i);
         }
+        if (!mounted) {
+          return;
+        }
         setState(() {
           urls.addAll(images);
         });
@@ -74,6 +77,10 @@ class _PickColorState extends State<PickUpsplashImage> {
                       TextFormField(
                         controller: text,
                         decoration: const InputDecoration(
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: Colors.white,
+                          )),
                           labelText: 'Search',
                           icon: Icon(Icons.search),
                         ),
@@ -84,6 +91,9 @@ class _PickColorState extends State<PickUpsplashImage> {
                           final images = <Photo>[];
                           for (Photo i in imagesResponse.data?.results ?? []) {
                             images.add(i);
+                          }
+                          if (!mounted) {
+                            return;
                           }
                           setState(() {
                             urls = images;
