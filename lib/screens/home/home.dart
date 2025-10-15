@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: LayoutBuilder(builder: (context, constraints) {
                   String text = 'Jar of Hearts!💜';
-                  var style = Theme.of(context).textTheme.headline1!;
+                  var style = Theme.of(context).textTheme.headlineLarge!;
                   return FittedBox(
                     fit: BoxFit.cover,
                     child: Column(

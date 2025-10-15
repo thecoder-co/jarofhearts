@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          filled: true,
-          fillColor: Colors.grey,
+          // filled: true,
+          // fillColor: Colors.grey,
         ),
       ),
       home: UserPreferences.isLoggedIn()

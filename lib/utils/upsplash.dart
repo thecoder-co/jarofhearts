@@ -4,8 +4,8 @@ class Upsplash {
   static final client = UnsplashClient(
     settings: const ClientSettings(
         credentials: AppCredentials(
-      accessKey: 'CdK68kwXOhmhtmEwb7-Sxws646up-PIbbNuvRS7vuSg',
-      secretKey: 'eOckTifuACi4T5Fz5xMBZmRaXX3vmHnQ5Xoqoe79lhE',
+      accessKey: String.fromEnvironment('UPSPLASH_ACCESS_KEY'),
+      secretKey: String.fromEnvironment('UPSPLASH_SECRET_KEY'),
     )),
   );
 }

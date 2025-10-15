@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "name": "jarofhearts (Flutter)",
+      "program": "lib/main.dart",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define-from-file",
+        "config.env"
+      ]
+    }
+  ]
+}
