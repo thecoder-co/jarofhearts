@@ -53,9 +53,8 @@ The app provides a robust suite of tools for customizing every element of the ca
 
 ## ⚙️ Technology Stack
 
-* **Frontend/UI:** \[*Add your frontend framework here, e.g., React, Flutter, Vue, etc.*]
-* **Styling:** Custom CSS/Styling, focused on gradients, shadows, and a clean, contrasting editor theme.
-* **Backend/Storage:** \[*Add your backend stack, e.g., Firebase for hosting/storage, etc. This is used to store user accounts and card media.*]
+* **Frontend/UI:** Flutter Web
+* **Backend/Storage:** Python/Flask/MongoDB
 
 ## 🤝 Contributing
 
@@ -64,7 +63,3 @@ We welcome suggestions, bug reports, and contributions! Please feel free to open
 ## 📄 License
 
 This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License**.
-
----
-
-This README is now ready to be integrated into your repository! Do you have any other details about the backend or technology you'd like to include?
